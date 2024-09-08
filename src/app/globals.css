@@ -105,3 +105,59 @@ a {
     color-scheme: dark;
   }
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+  /* background: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.area {
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+}
+.area .title {
+  text-align: center;
+  font-size: 4rem;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgb(19 121 222 / 80%), 0 0 30px rgb(104 104 105 / 80%), 0 0 40px rgb(51 105 159 / 80%), 0 0 50px rgb(123 141 159 / 80%), 0 0 60px rgb(56 88 119 / 80%);
+}
+.area .btn-area {
+  display: flex; justify-content: center; align-items: center; gap: 8px;
+  width: 100%;
+}
+.area .dance-area {
+  background: #000;
+  width: 600px;
+  height: 640px;
+}
+.area .btn-area button {
+  border-radius: 8px;
+  cursor: pointer;
+  color: #898989;
+  padding: 8px 16px;
+  background: rgb(48 88 206 / 30%);
+  border: none;
+}
+.area .btn-area button:hover {
+  opacity: .7;
+}
+.area .btn-area button.active {
+  background-color: #fff;
+  color: #0071ff;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.7), 0 0 4px rgba(255, 255, 255, 0.7), 0 0 10px rgb(19 121 222 / 80%), 0 0 4px rgb(104 104 105 / 80%), 0 0 10px rgb(51 105 159 / 80%), 0 0 20px rgb(123 141 159 / 80%), 0 0 10px rgb(56 88 119 / 80%)
+}
+
+.dance-name {
+  color: #385877cc;
+  text-align: center;
+  font-size: 1.5rem;
+}
