@@ -1,9 +1,40 @@
+import * as THREE from 'three'
 import React, { useRef, useEffect } from 'react'
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei'
 
-export function Model({ animationName = 'samba', ...props }) {
+import { GLTF } from 'three-stdlib'
+
+type GLTFResult = GLTF & {
+  nodes: {
+    EyeLeft: THREE.SkinnedMesh
+    EyeRight: THREE.SkinnedMesh
+    Wolf3D_Head: THREE.SkinnedMesh
+    Wolf3D_Teeth: THREE.SkinnedMesh
+    Wolf3D_Hair: THREE.SkinnedMesh
+    Wolf3D_Glasses: THREE.SkinnedMesh
+    Wolf3D_Body: THREE.SkinnedMesh
+    Wolf3D_Outfit_Bottom: THREE.SkinnedMesh
+    Wolf3D_Outfit_Footwear: THREE.SkinnedMesh
+    Wolf3D_Outfit_Top: THREE.SkinnedMesh
+    Hips: THREE.Bone
+  }
+  materials: {
+    Wolf3D_Eye: THREE.MeshStandardMaterial
+    Wolf3D_Skin: THREE.MeshStandardMaterial
+    Wolf3D_Teeth: THREE.MeshStandardMaterial
+    Wolf3D_Hair: THREE.MeshStandardMaterial
+    Wolf3D_Glasses: THREE.MeshStandardMaterial
+    Wolf3D_Body: THREE.MeshStandardMaterial
+    Wolf3D_Outfit_Bottom: THREE.MeshStandardMaterial
+    Wolf3D_Outfit_Footwear: THREE.MeshStandardMaterial
+    Wolf3D_Outfit_Top: THREE.MeshStandardMaterial
+  }
+}
+
+
+export function Model({ animationName, ...props }: any) {
   const group = useRef();
-  const { nodes, materials } = useGLTF('/b.glb')
+  const { nodes, materials } = useGLTF('/b.glb') as GLTFResult
   // const { animations: hiAnimation } = useFBX('/hi.fbx') // hi
   const { animations: SambaAnimation } = useFBX('/01.fbx') // SambaDancing
   const { animations: MacarenaAnimation } = useFBX('/02.fbx') // MacarenaDance
@@ -25,7 +56,7 @@ export function Model({ animationName = 'samba', ...props }) {
     ...NorthernSoulSpinComboAnimation
   ];
   console.log(SambaAnimation)
-  
+
   // console.log(MacarenaAnimation)
   // console.log(BellyAnimation)
   // console.log(HipHopAnimation)
@@ -104,12 +135,16 @@ export function Model({ animationName = 'samba', ...props }) {
     if (actions && actions[animationName]) {
       actions[animationName].reset().fadeIn(0.5).play();
     }
-    return () => actions[animationName]?.fadeOut(0.5);
+  
+    return () => {
+      if (actions && actions[animationName]) {
+        actions[animationName].fadeOut(0.5);
+      }
+    };
   }, [actions, animationName]);
-
   
   return (
-    <group ref={group} {...props} dispose={null} scale={1} position={0, 0, 0}>
+    <group ref={group} {...props} dispose={null}>
       <primitive object={nodes.Hips} />
       <skinnedMesh
         name="EyeLeft"

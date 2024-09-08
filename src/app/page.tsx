@@ -8,7 +8,7 @@ import { useState } from 'react'
 export default function Home() {
   const [animationName, setAnimationName] = useState('NorthernSoulSpinCombo')
   const [activeButton, setActiveButton] = useState('NorthernSoulSpinCombo');
-  const handleButtonClick = (animation) => {
+  const handleButtonClick = (animation: any) => {
     setAnimationName(animation);
     setActiveButton(animation);
   };
